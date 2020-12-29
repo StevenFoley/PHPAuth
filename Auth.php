@@ -1,7 +1,7 @@
 <?php
 
 namespace PHPAuth;
-
+require '/var/www/extras/sendSESmail.php';
 use Exception;
 use PDO;
 use PDOException;
@@ -1769,73 +1769,56 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
         $return = [
             'error' => true
         ];
-        $mail = new PHPMailer();
 
-        // Check configuration for custom SMTP parameters
-        try {
-            // Server settings
-            if ($this->config->smtp) {
 
-                if ($this->config->smtp_debug) {
-                    $mail->SMTPDebug = $this->config->smtp_debug;
-                }
+        # Consistent for each email
+        $sender_email = '"ObSkill" <info@obskill.com>';
+        $recipient_emails = [$email];
+        $char_set = 'UTF-8';
 
-                $mail->isSMTP();
+        # These depend on the email
+        $subject = $plaintext_body = $html_body = "";
 
-                $mail->Host = $this->config->smtp_host;
-                $mail->SMTPAuth = $this->config->smtp_auth;
+        if ($type == 'activation') 
+        {
+            $subject = "Activate your ObSkill account"
 
-                // set SMTP auth username/password
-                if (!is_null($this->config->smtp_auth)) {
-                    $mail->Username = $this->config->smtp_username;
-                    $mail->Password = $this->config->smtp_password;
-                }
+            if ($this->config->site_activation_page_append_code)
+                $url = $this->config->site_activation_page . "/" . $key;
+            else
+                $url = $this->config->site_activation_page;
+                
+            $html_body = "<h1>Welcome to ObSkill!</h1><p>Thanks for choosing ObSkill. It's pretty cool. Anyway, <a href=$url>activate your account here.</a></p>";
+            $plaintext_body = "Welcome to ObSkill!\nThanks for choosing ObSkill. It's pretty cool. Anyway, activate your account here: $url";
+        } 
+        elseif ($type == 'reset') 
+        {
+            $subject = "Reset your ObSkill password"
 
-                // set SMTPSecure (tls|ssl)
-                if (!is_null($this->config->smtp_security)) {
-                    $mail->SMTPSecure = $this->config->smtp_security;
-                }
+            if ($this->config->site_password_reset_page_append_code)
+                $url = $this->config->site_password_reset_page . "/" . $key;
+            else
+                $url = $this->config->site_password_reset_page;
 
-                $mail->Port = $this->config->smtp_port;
-            } //without this params internal mailer will be used.
+            $html_body = "<h1>Reset your password</h1><p>Hi there! We received a request to reset your password. If this was you, <a href=$url>reset your password here.</a></p>";
+            $plaintext_body = "Reset your password\nHi there! We received a request to reset your password. If this was you, reset your password here: $url"
+        } 
+        else 
+        {
+            return false;
+        }
 
-            //Recipients
-            $mail->setFrom($this->config->site_email, $this->config->site_name);
-            $mail->addAddress($email);
+        # Send email
+        $result = sendSESMail($sender_email, $recipient_emails, $subject, $plaintext_body, $html_body);
 
-            $mail->CharSet = $this->config->mail_charset;
-
-            //Content
-            $mail->isHTML(true);
-
-            if ($type == 'activation') {
-                $mail->Subject = $this->__lang('email_activation_subject', $this->config->site_name);
-                if ($this->config->site_activation_page_append_code)
-                    $url = $this->config->site_activation_page . "/" . $key;
-                else
-                    $url = $this->config->site_activation_page;
-                $mail->Subject = $this->__lang('email_activation_subject', $this->config->site_name);
-                $mail->Body = $this->__lang('email_activation_body', $this->config->site_url, $url, $key);
-                $mail->AltBody = $this->__lang('email_activation_altbody', $this->config->site_url, $url, $key);
-            } elseif ($type == 'reset') {
-                if ($this->config->site_password_reset_page_append_code)
-                    $url = $this->config->site_password_reset_page . "/" . $key;
-                else
-                    $url = $this->config->site_password_reset_page;
-                $mail->Subject = $this->__lang('email_reset_subject', $this->config->site_name);
-                $mail->Body = $this->__lang('email_reset_body', $this->config->site_url, $url, $key);
-                $mail->AltBody = $this->__lang('email_reset_altbody', $this->config->site_url, $url, $key);
-            } else {
-                return false;
-            }
-
-            if (!$mail->send())
-                throw new Exception($mail->ErrorInfo);
-
+        if($result === true)
+        {
             $return['error'] = false;
-
-        } catch (Exception $e) {
-            $return['message'] = $mail->ErrorInfo;
+        }
+        else
+        {
+            $return['message'] = $result;
+            trigger_error("Auth.php: Failed to send $type email. $result.");
         }
 
         return $return;

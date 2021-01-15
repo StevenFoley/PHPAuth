@@ -93,7 +93,7 @@ class Config
 
                 // load configuration
                 try {
-                    $configQuery = $this->dbh->query("SELECT `setting`, `value` FROM {$this->config_table};");
+                    $configQuery = $this->dbh->query("SELECT setting, value FROM {$this->config_table};");
 
                     if ($configQuery instanceof PDOStatement) {
                         $this->config = $configQuery->fetchAll(PDO::FETCH_KEY_PAIR);

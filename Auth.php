@@ -1793,7 +1793,7 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
         } 
         elseif ($type == 'reset') 
         {
-            $subject = "Reset your ObSkill password"
+            $subject = "Reset your ObSkill password";
 
             if ($this->config->site_password_reset_page_append_code)
                 $url = $this->config->site_password_reset_page . "/" . $key;

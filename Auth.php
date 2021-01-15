@@ -1801,7 +1801,7 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
                 $url = $this->config->site_password_reset_page;
 
             $html_body = "<h1>Reset your password</h1><p>Hi there! We received a request to reset your password. If this was you, <a href=$url>reset your password here.</a></p>";
-            $plaintext_body = "Reset your password\nHi there! We received a request to reset your password. If this was you, reset your password here: $url"
+            $plaintext_body = "Reset your password\nHi there! We received a request to reset your password. If this was you, reset your password here: $url";
         } 
         else 
         {

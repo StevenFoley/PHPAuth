@@ -1781,7 +1781,7 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
 
         if ($type == 'activation') 
         {
-            $subject = "Activate your ObSkill account"
+            $subject = "Activate your ObSkill account";
 
             if ($this->config->site_activation_page_append_code)
                 $url = $this->config->site_url . "/" . $this->config->site_activation_page . "/" . $key;
@@ -1793,7 +1793,7 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
         } 
         elseif ($type == 'reset') 
         {
-            $subject = "Reset your ObSkill password"
+            $subject = "Reset your ObSkill password";
 
             if ($this->config->site_password_reset_page_append_code)
                 $url = $this->config->site_url . "/" . $this->config->site_password_reset_page . "/" . $key;

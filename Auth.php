@@ -1781,27 +1781,27 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
 
         if ($type == 'activation') 
         {
-            $subject = "Activate your ObSkill account";
+            $subject = "Activate your ObSkill account"
 
             if ($this->config->site_activation_page_append_code)
-                $url = $this->config->site_activation_page . "/" . $key;
+                $url = $this->config->site_url . "/" . $this->config->site_activation_page . "/" . $key;
             else
-                $url = $this->config->site_activation_page;
+                $url = $this->config->site_url . "/" . $this->config->site_activation_page;
                 
             $html_body = "<h1>Welcome to ObSkill!</h1><p>Thanks for choosing ObSkill. It's pretty cool. Anyway, <a href=$url>activate your account here.</a></p>";
             $plaintext_body = "Welcome to ObSkill!\nThanks for choosing ObSkill. It's pretty cool. Anyway, activate your account here: $url";
         } 
         elseif ($type == 'reset') 
         {
-            $subject = "Reset your ObSkill password";
+            $subject = "Reset your ObSkill password"
 
             if ($this->config->site_password_reset_page_append_code)
-                $url = $this->config->site_password_reset_page . "/" . $key;
+                $url = $this->config->site_url . "/" . $this->config->site_password_reset_page . "/" . $key;
             else
-                $url = $this->config->site_password_reset_page;
+                $url = $this->config->site_url . "/" . $this->config->site_password_reset_page;
 
             $html_body = "<h1>Reset your password</h1><p>Hi there! We received a request to reset your password. If this was you, <a href=$url>reset your password here.</a></p>";
-            $plaintext_body = "Reset your password\nHi there! We received a request to reset your password. If this was you, reset your password here: $url";
+            $plaintext_body = "Reset your password\nHi there! We received a request to reset your password. If this was you, reset your password here: $url"
         } 
         else 
         {

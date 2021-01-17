@@ -1805,7 +1805,7 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
         } 
         else 
         {
-            return false;
+            return $return;
         }
 
         # Send email

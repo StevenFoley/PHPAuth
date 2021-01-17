@@ -1805,6 +1805,7 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
         } 
         else 
         {
+            trigger_error("Auth.php: Failed to send $type email. Invalid type specified.");
             return $return;
         }
 

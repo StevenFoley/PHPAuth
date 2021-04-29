@@ -1784,9 +1784,9 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
             $subject = "Activate your ObSkill account";
 
             if ($this->config->site_activation_page_append_code)
-                $url = $this->config->site_activation_page . "/" . $key;
+                $url = $this->config->site_url . "/" . $this->config->site_activation_page . "/" . $key;
             else
-                $url = $this->config->site_activation_page;
+                $url = $this->config->site_url . "/" . $this->config->site_activation_page;
                 
             $html_body = "<table width='100%' cellspacing='0' cellpadding='10' border='0'>
             <tr align='center'>
@@ -1859,9 +1859,9 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
             $subject = "Reset your ObSkill password";
 
             if ($this->config->site_password_reset_page_append_code)
-                $url = $this->config->site_password_reset_page . "/" . $key;
+                $url = $this->config->site_url . "/" . $this->config->site_password_reset_page . "/" . $key;
             else
-                $url = $this->config->site_password_reset_page;
+                $url = $this->config->site_url . "/" . $this->config->site_password_reset_page;
 
                 $html_body = "<table width='100%' cellspacing='0' cellpadding='10' border='0'>
                 <tr align='center'>

@@ -1927,7 +1927,7 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
                 </tr>
                 
               </table>";
-            $plaintext_body = "Hi there! We received a request to reset your password. If this was you, use the link below to reset it. Otherwise, you can safely ignore this email. \n\nReset your password here: $url"
+            $plaintext_body = "Hi there! We received a request to reset your password. If this was you, use the link below to reset it. Otherwise, you can safely ignore this email. \n\nReset your password here: $url";
         } 
         else 
         {

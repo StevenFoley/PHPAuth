@@ -1788,8 +1788,71 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
             else
                 $url = $this->config->site_activation_page;
                 
-            $html_body = "<h1>Welcome to ObSkill!</h1><p>Thanks for choosing ObSkill. It's pretty cool. Anyway, <a href=$url>activate your account here.</a></p>";
-            $plaintext_body = "Welcome to ObSkill!\nThanks for choosing ObSkill. It's pretty cool. Anyway, activate your account here: $url";
+            $html_body = "<table width='100%' cellspacing='0' cellpadding='10' border='0'>
+            <tr align='center'>
+              <td colspan='3'>
+                <img src='https://obskill.com/src/assets/logo.png' alt='Logo' width='200' height='200'>
+              </td>
+            </tr>
+          
+            <tr align='center'>
+              <td colspan='3'>
+                <h1 style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;'>Thanks for signing up with ObSkill!</h1>
+              </td>
+            </tr>
+          
+            <tr align='center'>
+              <td></td>
+              <td width='700'>
+                <p style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;'>Thanks for creating your new ObSkill account! There is just one more step before you can get started. Use the link below to verify your email address (link expires in 3 hours). Feel free to email info@obskill.com with any questions!</p>
+              </td>
+              <td></td>
+            </tr>
+          
+            <tr>
+              <td></td>
+              <td width='700' style='border-bottom: 2px #F9C470 solid;'></td>
+              <td></td>
+            </tr>
+          
+            <tr align='center'>
+              <td colspan='3'>
+                <table cellspacing='20' cellpadding='20' border='0' align='center' style='margin: auto;'>
+                  <tr>
+                    <td style='border-radius: 5px; background-color: #5455a5; text-align: center;'>
+                      <a href='$url' style='color: white; background-color: #5455a5; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; display: block; text-decoration: none;'>
+                        Activate my ObSkill Account
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          
+            <tr align='center'>
+              <td colspan='3'>
+                <table cellspacing='20'>
+                  <tr>
+                    <td>
+                      <!-- <a href='https://www.linkedin.com/company/obskill/'><img src='https://obskill.com/src/assets/socials-buttons/linkedin.png'></a> -->
+                      <a href='https://www.linkedin.com/company/obskill/'><img src='https://obskill.com/src/assets/socials-buttons/linkedin.png'></a>
+                    </td>
+                    <td>
+                      <a href='https://www.instagram.com/obskillco/'><img src='https://obskill.com/src/assets/socials-buttons/instagram.png'></a>
+                    </td>
+                    <td>
+                      <a href='https://twitter.com/ob_skill'><img src='https://obskill.com/src/assets/socials-buttons/twitter.png'></a>
+                    </td>
+                    <td>
+                      <a href='mailto:info@obskill.com'><img src='https://obskill.com/src/assets/socials-buttons/email.png'></a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            
+          </table>";
+            $plaintext_body = "Thanks for creating your new ObSkill account! There is just one more step before you can get started. Use the link below to verify your email address (link expires in 3 hours). Feel free to email info@obskill.com with any questions! \n\nActivate your account here: $url";
         } 
         elseif ($type == 'reset') 
         {
@@ -1800,8 +1863,71 @@ VALUES (:uid, :hash, :expiredate, :ip, :agent, :cookie_crc)
             else
                 $url = $this->config->site_password_reset_page;
 
-            $html_body = "<h1>Reset your password</h1><p>Hi there! We received a request to reset your password. If this was you, <a href=$url>reset your password here.</a></p>";
-            $plaintext_body = "Reset your password\nHi there! We received a request to reset your password. If this was you, reset your password here: $url"
+                $html_body = "<table width='100%' cellspacing='0' cellpadding='10' border='0'>
+                <tr align='center'>
+                  <td colspan='3'>
+                    <img src='https://obskill.com/src/assets/logo.png' alt='Logo' width='200' height='200'>
+                  </td>
+                </tr>
+              
+                <tr align='center'>
+                  <td colspan='3'>
+                    <h1 style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;'>Reset your password</h1>
+                  </td>
+                </tr>
+              
+                <tr align='center'>
+                  <td></td>
+                  <td width='700'>
+                    <p style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;'>Hi there! We received a request to reset your password. If this was you, use the link below to reset it. Otherwise, you can safely ignore this email.</p>
+                  </td>
+                  <td></td>
+                </tr>
+              
+                <tr>
+                  <td></td>
+                  <td width='700' style='border-bottom: 2px #F9C470 solid;'></td>
+                  <td></td>
+                </tr>
+              
+                <tr align='center'>
+                  <td colspan='3'>
+                    <table cellspacing='20' cellpadding='20' border='0' align='center' style='margin: auto;'>
+                      <tr>
+                        <td style='border-radius: 5px; background-color: #5455a5; text-align: center;'>
+                          <a href='$url' style='color: white; background-color: #5455a5; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; display: block; text-decoration: none;'>
+                            Activate my ObSkill Account
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              
+                <tr align='center'>
+                  <td colspan='3'>
+                    <table cellspacing='20'>
+                      <tr>
+                        <td>
+                          <!-- <a href='https://www.linkedin.com/company/obskill/'><img src='https://obskill.com/src/assets/socials-buttons/linkedin.png'></a> -->
+                          <a href='https://www.linkedin.com/company/obskill/'><img src='https://obskill.com/src/assets/socials-buttons/linkedin.png'></a>
+                        </td>
+                        <td>
+                          <a href='https://www.instagram.com/obskillco/'><img src='https://obskill.com/src/assets/socials-buttons/instagram.png'></a>
+                        </td>
+                        <td>
+                          <a href='https://twitter.com/ob_skill'><img src='https://obskill.com/src/assets/socials-buttons/twitter.png'></a>
+                        </td>
+                        <td>
+                          <a href='mailto:info@obskill.com'><img src='https://obskill.com/src/assets/socials-buttons/email.png'></a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                
+              </table>";
+            $plaintext_body = "Hi there! We received a request to reset your password. If this was you, use the link below to reset it. Otherwise, you can safely ignore this email. \n\nReset your password here: $url"
         } 
         else 
         {
